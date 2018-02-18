@@ -18,10 +18,7 @@ namespace PersonsWebService.Controllers
         }
 
         [HttpGet]
-        public IEnumerable<Person> Get()
-        {
-                       return persons;
-        }
+        public IEnumerable<Person> Get() => persons;
 
 
         [HttpGet("{id}")]
