@@ -8,10 +8,14 @@ import {Routes, RouterModule} from '@angular/router';
 import { AppComponent } from './app.component';
 import { PersonListComponent } from './personlist/personlist.component';
 import { NotfoundComponent } from './notfound/notfound.component';
+import { HomeComponent } from './home/home.component';
+import { AddresslistComponent } from './addresslist/addresslist.component';
 
 const appRoutes: Routes = [
-  { path: '', component: AppComponent},
-  { path: 'persons', component: PersonListComponent},
+  { path: 'persons', component: PersonListComponent },
+  { path: 'address', component: AddresslistComponent },
+  { path: 'home', component: HomeComponent },
+  { path: '', redirectTo:'/home', pathMatch:'full' },
   { path: '**', component: NotfoundComponent }
 ];
 
@@ -19,7 +23,9 @@ const appRoutes: Routes = [
   declarations: [
     AppComponent,
     PersonListComponent,
-    NotfoundComponent
+    NotfoundComponent,
+    HomeComponent,
+    AddresslistComponent
   ],
   imports: [
     BrowserModule,

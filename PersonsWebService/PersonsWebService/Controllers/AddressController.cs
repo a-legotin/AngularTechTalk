@@ -1,24 +1,21 @@
-﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using PersonsWebService.Classes;
 
 namespace PersonsWebService.Controllers
 {
     [Route("api/[controller]")]
-    public class PersonController : Controller
+    public class AddressController : Controller
     {
-        private IEnumerable<Person> persons;
-        public PersonController()
+        private IEnumerable<Address> addresses;
+        public AddressController()
         {
-            var personsData = System.IO.File.ReadAllText("person_data.json");
-            persons = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Person>>(personsData);
+            var addressData = System.IO.File.ReadAllText("addr_data.json");
+            addresses = Newtonsoft.Json.JsonConvert.DeserializeObject<List<Address>>(addressData);
         }
 
         [HttpGet]
-        public IEnumerable<Person> Get() => persons;
+        public IEnumerable<Address> Get() => addresses;
 
         [HttpGet("{id}")]
         public string Get(int id)
@@ -26,19 +23,16 @@ namespace PersonsWebService.Controllers
             return "value";
         }
 
-        // POST api/values
         [HttpPost]
         public void Post([FromBody]string value)
         {
         }
 
-        // PUT api/values/5
         [HttpPut("{id}")]
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE api/values/5
         [HttpDelete("{id}")]
         public void Delete(int id)
         {
