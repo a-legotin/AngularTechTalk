@@ -1,32 +1,28 @@
-import { Component } from '@angular/core';
-import { Http } from '@angular/http';
-import { HttpModule } from '@angular/http';
-
+import { Component, OnInit } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { HttpClientModule } from '@angular/common/http';
+import { PersonService } from './person.service';
+import { Person } from './person';
 
 @Component({
   selector: 'app-personlist',
   templateUrl: './personlist.component.html',
-  styleUrls: ['./personlist.component.css']
+  styleUrls: ['./personlist.component.css',
+  "../../../node_modules/bootstrap/dist/css/bootstrap.min.css"],
+  providers: [PersonService]
 })
-export class PersonListComponent {
+export class PersonListComponent implements OnInit {
   public persons: Person[];
-  private baseUrl = 'http://localhost:7000/';
 
-  constructor(http: Http) {
-      http.get(this.baseUrl + 'api/person').subscribe(result => {
-          this.persons = result.json() as Person[];
-          console.log(`loaded ${this.persons.length} persons`);
-      }, error => console.error(error));
+  constructor(private personService: PersonService) {}
+
+  ngOnInit(){
+    this.personService.getAll().subscribe(data => this.persons=data);
+  }
+
+  delete(person: Person){
+    console.log('removing' + person.Email);
+    //delete from service 
+    this.persons = this.persons.filter(obj => obj !== person);
   }
 }
-
-interface Person {
-  Id: number,
-  FirstName: string;
-  LastName: string;
-  Email: string;
-  Gender: string;
-  Ip: string;
-}
-
-

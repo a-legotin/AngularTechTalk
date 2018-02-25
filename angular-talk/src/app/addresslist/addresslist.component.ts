@@ -5,7 +5,8 @@ import { HttpModule } from '@angular/http';
 @Component({
   selector: 'app-addresslist',
   templateUrl: './addresslist.component.html',
-  styleUrls: ['./addresslist.component.css']
+  styleUrls: ['./addresslist.component.css',
+  "../../../node_modules/bootstrap/dist/css/bootstrap.min.css"]
 })
 export class AddresslistComponent {
   public addresses: Address[];
